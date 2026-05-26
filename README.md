@@ -59,6 +59,7 @@ O projeto inclui um dashboard interativo com:
 - Logs em tempo real  
 - Indicadores de performance  
 - Classificação de eventos (OK, LENTO, ERRO)
+ <img width="1914" height="949" alt="image" src="https://github.com/user-attachments/assets/8243f129-6b0f-4047-a0cd-9521785e38eb" />
 
 ---
 
