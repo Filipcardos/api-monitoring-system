@@ -1,0 +1,188 @@
+[ERRO] http://127.0.0.1:8000/ | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: / (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conex�o p�de ser feita porque a m�quina de destino as recusou ativamente"))
+[ERRO] http://127.0.0.1:8000/health | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conex�o p�de ser feita porque a m�quina de destino as recusou ativamente"))
+[ERRO] http://127.0.0.1:8000/delay | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /delay (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conex�o p�de ser feita porque a m�quina de destino as recusou ativamente"))
+[ERRO] http://127.0.0.1:8000/error | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /error (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conex�o p�de ser feita porque a m�quina de destino as recusou ativamente"))
+[OK] http://127.0.0.1:8000/ | Status: 200 | Tempo: 5.17ms
+[OK] http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.66ms
+[OK] http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.31ms
+[OK] http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.48ms
+❌ ERRO | http://127.0.0.1:8000/ | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: / (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/health | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/delay | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /delay (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/error | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /error (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/ | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: / (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/health | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/delay | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /delay (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/error | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /error (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/ | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: / (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/health | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/delay | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /delay (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/error | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /error (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/ | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: / (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/health | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/delay | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /delay (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/error | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /error (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/ | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: / (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/health | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/delay | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /delay (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/error | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /error (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/ | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: / (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/health | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/delay | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /delay (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/error | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /error (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/ | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: / (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/health | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/delay | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /delay (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/error | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /error (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/ | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: / (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/health | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/delay | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /delay (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/error | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /error (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+❌ ERRO | http://127.0.0.1:8000/ | Falha: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: / (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente"))
+⚠️ LENTO | http://127.0.0.1:8000/health | Status: 200 | Tempo: 1543.05ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2006.08ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.36ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.72ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 2.91ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.09ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.12ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 4.2ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 2.99ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2005.82ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 4.11ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 6.17ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 2.82ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2003.74ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.17ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.63ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.34ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.64ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.66ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 6.06ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.54ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2003.82ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.09ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 5.84ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.51ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2005.0ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 4.43ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 5.67ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.22ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2005.17ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.54ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 4.53ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.54ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.72ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.85ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 5.4ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.25ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.8ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 4.21ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.33ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.11ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2003.59ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 2.93ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 4.96ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.87ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.24ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 6.15ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 4.25ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.69ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.63ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.42ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 4.51ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 4.42ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.74ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.88ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.17ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.1ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2005.03ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.27ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 5.79ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.07ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2003.48ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 2.78ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 5.0ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.02ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2005.06ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.83ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.61ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.16ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.28ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.4ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.86ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.7ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.26ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.74ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 5.4ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.13ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2003.42ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 4.17ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 4.08ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 2.93ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.08ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 2.94ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.59ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.44ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2003.55ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 2.89ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.04ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.58ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2003.85ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.03ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.96ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.62ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2003.98ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 4.35ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.77ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.15ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.66ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.28ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 4.46ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.8ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.48ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.04ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 4.07ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.28ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2003.34ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.43ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.24ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 2.75ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2003.97ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.25ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.77ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.59ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.47ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.67ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.73ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 4.96ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.0ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.88ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.47ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.32ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2003.94ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.85ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 4.7ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.1ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2005.54ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.02ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.47ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 2.99ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.13ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.43ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.63ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.47ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2005.59ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.25ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 9.21ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 2.86ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2003.49ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 2.76ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 3.57ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 2.98ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.12ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.81ms
+✅ OK | http://127.0.0.1:8000/ | Status: 200 | Tempo: 5.36ms
+✅ OK | http://127.0.0.1:8000/health | Status: 200 | Tempo: 3.3ms
+⚠️ LENTO | http://127.0.0.1:8000/delay | Status: 200 | Tempo: 2004.99ms
+✅ OK | http://127.0.0.1:8000/error | Status: 200 | Tempo: 3.73ms
