@@ -1,10 +1,10 @@
-# 🚀 API Monitoring System
+#  API Monitoring System
 
 Sistema completo de monitoramento de APIs desenvolvido em Python, com análise de performance, detecção de falhas e alertas inteligentes em tempo real.
 
 ---
 
-## 📌 Sobre o Projeto
+##  Sobre o Projeto
 
 O **API Monitoring System** é uma aplicação que simula um ambiente real de produção, realizando monitoramento contínuo de endpoints, análise de tempo de resposta e detecção de comportamentos anormais.
 
@@ -16,7 +16,7 @@ O projeto foi inspirado em ferramentas utilizadas em produção como:
 
 ---
 
-## ⚙️ Funcionalidades
+##  Funcionalidades
 
  Monitoramento contínuo de APIs  
  Medição de tempo de resposta  
@@ -33,14 +33,14 @@ O projeto foi inspirado em ferramentas utilizadas em produção como:
 
 O sistema analisa o comportamento das requisições e identifica padrões anormais:
 
-- 📉 Detecta quando o tempo de resposta foge do padrão  
-- ⚠️ Identifica lentidão automaticamente  
-- 🚨 Dispara alertas críticos para eventos graves  
-- 🧠 Usa média dos últimos resultados para análise  
+-  Detecta quando o tempo de resposta foge do padrão  
+-  Identifica lentidão automaticamente  
+-  Dispara alertas críticos para eventos graves  
+-  Usa média dos últimos resultados para análise  
 
 ---
 
-## 🧪 Cenários simulados
+##  Cenários simulados
 
 A aplicação simula situações reais de produção:
 
@@ -51,7 +51,7 @@ A aplicação simula situações reais de produção:
 
 ---
 
-## 📊 Dashboard
+##  Dashboard
 
 O projeto inclui um dashboard interativo com:
 
@@ -72,7 +72,7 @@ O projeto inclui um dashboard interativo com:
 
 ---
 
-## 🚀 Como Executar o Projeto
+##  Como Executar o Projeto
 
 ```bash
 # Instalar dependências
@@ -98,7 +98,7 @@ api-monitoring-system/
 └── README.md
 ````
 
-## 💼 Contexto Profissional
+##  Contexto Profissional
 Este projeto demonstra habilidades práticas em:
 
 Desenvolvimento Backend
