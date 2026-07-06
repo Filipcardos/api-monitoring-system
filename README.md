@@ -29,7 +29,7 @@ O projeto foi inspirado em ferramentas utilizadas em produção como:
 
 ---
 
-## 🧠 Inteligência do Sistema
+##  Inteligência do Sistema
 
 O sistema analisa o comportamento das requisições e identifica padrões anormais:
 
@@ -63,7 +63,7 @@ O projeto inclui um dashboard interativo com:
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 - Python  
 - FastAPI  
@@ -87,7 +87,7 @@ python monitor.py
 # Rodar dashboard
 python -m streamlit run dashboard.py
 ```
-## 📂 Estrutura do Projeto
+##  Estrutura do Projeto
 api-monitoring-system/
 ````│
 ├── app.py
@@ -108,9 +108,5 @@ Diagnóstico de falhas
 Automação de processos
 Análise de performance
 
-## 👨‍💻 Autor
+##  Autor
 Filipe Oliveira Cardoso
-
-📍 Brasil
-
-🔗 GitHub: https://github.com/Filipcardos
