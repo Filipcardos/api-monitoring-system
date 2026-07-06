@@ -1,4 +1,4 @@
-#  API Monitoring System
+#  API Monitoring System 
 
 Sistema completo de monitoramento de APIs desenvolvido em Python, com análise de performance, detecção de falhas e alertas inteligentes em tempo real.
 
@@ -44,10 +44,10 @@ O sistema analisa o comportamento das requisições e identifica padrões anorma
 
 A aplicação simula situações reais de produção:
 
-- ✅ API funcionando normalmente  
-- ⚠️ API com alta latência  
-- ❌ API indisponível  
-- 📊 Variação de performance ao longo do tempo  
+-  API funcionando normalmente  
+-  API com alta latência  
+-  API indisponível  
+-  Variação de performance ao longo do tempo  
 
 ---
 
@@ -109,4 +109,4 @@ Automação de processos
 Análise de performance
 
 ##  Autor
-Filipe Oliveira Cardoso
+Filipe Oliveira Cardoso 
