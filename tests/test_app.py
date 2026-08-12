@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-from fastapi.testclient import TestClient
-
-from app import app
-
-client = TestClient(app)
-
-
-def test_health():
-=======
 import importlib
 
 from fastapi.testclient import TestClient
@@ -36,24 +26,11 @@ def test_health():
     from app import app
 
     client = TestClient(app)
->>>>>>> master
     response = client.get("/health")
     assert response.status_code == 200
     assert response.json() == {"status": "ok"}
 
 
-<<<<<<< HEAD
-def test_home():
-    response = client.get("/")
-    assert response.status_code == 200
-    assert response.json()["status"] == "API online"
-
-
-def test_error_endpoint_returns_500():
-    response = client.get("/error")
-    assert response.status_code == 500
-    assert "erro" in response.json()
-=======
 def test_error_endpoint_returns_500():
     from app import app
 
@@ -80,4 +57,3 @@ def test_cron_requires_secret_when_configured(monkeypatch, tmp_path):
     )
     assert authorized.status_code == 200
     assert authorized.json()["status"] == "ok"
->>>>>>> master
