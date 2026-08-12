@@ -1,112 +1,150 @@
-#  API Monitoring System 
+# API Monitoring System
 
-Sistema completo de monitoramento de APIs desenvolvido em Python, com análise de performance, detecção de falhas e alertas inteligentes em tempo real.
+![Python](https://img.shields.io/badge/Python-3.11+-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-API-009688)
+![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B)
+![Vercel](https://img.shields.io/badge/Deploy-Vercel-black)
+![Tests](https://img.shields.io/badge/Tests-Pytest-green)
 
----
+## Sobre o projeto
 
-##  Sobre o Projeto
+Sistema de monitoramento de APIs desenvolvido em Python. Monitora endpoints em intervalos regulares, mede latência, classifica o status das respostas (OK / LENTO / ERRO) e dispara alertas, com um dashboard interativo em Streamlit para visualização em tempo real.
 
-O **API Monitoring System** é uma aplicação que simula um ambiente real de produção, realizando monitoramento contínuo de endpoints, análise de tempo de resposta e detecção de comportamentos anormais.
+## Funcionalidades
 
-O projeto foi inspirado em ferramentas utilizadas em produção como:
+- Monitoramento contínuo de endpoints
+- Medição de tempo de resposta
+- Detecção de lentidão e falhas (por status HTTP e por timeout)
+- Alertas inteligentes baseados em histórico e alertas críticos
+- Logs estruturados (`logging`, níveis INFO/WARNING/ERROR)
+- Dashboard interativo com status, gráfico e histórico de logs
+- Testes automatizados com Pytest
 
-- Datadog  
-- Prometheus  
-- New Relic  
+## Arquitetura
 
----
+```
+Monitor (worker contínuo) ──► logs.txt ──► Dashboard (Streamlit)
+API FastAPI (endpoints monitorados) ──► deploy serverless (Vercel)
+```
 
-##  Funcionalidades
+## Tecnologias
 
- Monitoramento contínuo de APIs  
- Medição de tempo de resposta  
- Detecção de lentidão  
- Alertas automáticos e críticos  
- Detecção de comportamento anormal (baseado em histórico)  
- Simulação de falhas de conexão  
- Geração de logs persistentes  
- Dashboard interativo com Streamlit  
+- Python
+- FastAPI + Uvicorn
+- Requests
+- Streamlit
+- Pytest
 
----
+## Estrutura do projeto
 
-##  Inteligência do Sistema
+```
+api-monitoring-system/
+├── api/
+│   └── index.py        # entrypoint serverless para a Vercel
+├── tests/
+│   ├── test_app.py
+│   └── test_monitor.py
+├── app.py               # API FastAPI
+├── monitor.py           # worker de monitoramento contínuo
+├── dashboard.py          # dashboard Streamlit
+├── config.py             # configuração via variáveis de ambiente
+├── requirements.txt
+├── .env.example
+├── vercel.json
+└── README.md
+```
 
-O sistema analisa o comportamento das requisições e identifica padrões anormais:
-
--  Detecta quando o tempo de resposta foge do padrão  
--  Identifica lentidão automaticamente  
--  Dispara alertas críticos para eventos graves  
--  Usa média dos últimos resultados para análise  
-
----
-
-##  Cenários simulados
-
-A aplicação simula situações reais de produção:
-
--  API funcionando normalmente  
--  API com alta latência  
--  API indisponível  
--  Variação de performance ao longo do tempo  
-
----
-
-##  Dashboard
-
-O projeto inclui um dashboard interativo com:
-
-- Status geral do sistema  
-- Logs em tempo real  
-- Indicadores de performance  
-- Classificação de eventos (OK, LENTO, ERRO)
- <img width="1914" height="949" alt="image" src="https://github.com/user-attachments/assets/8243f129-6b0f-4047-a0cd-9521785e38eb" />
-
----
-
-##  Tecnologias Utilizadas
-
-- Python  
-- FastAPI  
-- Requests  
-- Streamlit  
-
----
-
-##  Como Executar o Projeto
+## Como executar localmente
 
 ```bash
 # Instalar dependências
 pip install -r requirements.txt
 
-# Rodar API
+# Rodar a API
 python -m uvicorn app:app --reload
 
-# Rodar monitor
+# Rodar o monitor (em outro terminal)
 python monitor.py
 
-# Rodar dashboard
-python -m streamlit run dashboard.py
+# Rodar o dashboard (em outro terminal)
+streamlit run dashboard.py
 ```
-##  Estrutura do Projeto
-api-monitoring-system/
-````│
-├── app.py
-├── monitor.py
-├── dashboard.py
-├── logs.txt
-├── requirements.txt
-└── README.md
-````
 
-##  Contexto Profissional
-Este projeto demonstra habilidades práticas em:
+## Variáveis de ambiente
 
-Desenvolvimento Backend
-Monitoramento de aplicações
-Observabilidade
-Diagnóstico de falhas
-Automação de processos
-Análise de performance
+Copie `.env.example` para `.env` e ajuste se necessário:
 
-##  Autor
-Filipe Oliveira Cardoso 
+| Variável         | Descrição                                  | Padrão                  |
+|------------------|---------------------------------------------|--------------------------|
+| MONITOR_URL      | URL base da API monitorada                   | http://127.0.0.1:8000   |
+| CHECK_INTERVAL   | Intervalo entre verificações (s)             | 5                        |
+| TIMEOUT          | Timeout das requisições do monitor (s)        | 5                        |
+| SLOW_THRESHOLD   | Limite para classificar como lento (ms)       | 1000                     |
+| ERROR_THRESHOLD  | Limite para alerta crítico de lentidão (ms)   | 2000                     |
+| LOG_FILE         | Caminho do arquivo de log                     | logs.txt                |
+
+## API
+
+| Método | Rota      | Descrição                       |
+|--------|-----------|-----------------------------------|
+| GET    | `/`       | Status geral da API               |
+| GET    | `/health` | Healthcheck                        |
+| GET    | `/delay`  | Simula resposta lenta (2s)         |
+| GET    | `/error`  | Simula falha (HTTP 500)            |
+
+## Documentação Swagger
+
+Com a API em execução:
+
+- Swagger UI: `http://127.0.0.1:8000/docs`
+- ReDoc: `http://127.0.0.1:8000/redoc`
+
+## Monitoramento
+
+`monitor.py` verifica os endpoints em `config.py` a cada `CHECK_INTERVAL` segundos, classifica cada resposta (OK/LENTO/ERRO), detecta desvios de padrão comparando com a média das últimas 5 medições e registra tudo via `logging` em `logs.txt` e no console.
+
+## Dashboard
+
+`dashboard.py` lê `logs.txt` e exibe status geral do sistema, tempo médio de resposta, gráfico de performance e o histórico recente de logs.
+
+## Testes
+
+```bash
+pytest
+```
+
+Cobre o healthcheck, os endpoints principais e a lógica de classificação de status do monitor.
+
+## Deploy na Vercel
+
+A API (`app.py`, exposta via `api/index.py`) está pronta para deploy serverless:
+
+```bash
+vercel login
+vercel dev      # teste local
+vercel          # preview
+vercel --prod   # produção
+```
+
+## Limitações da arquitetura serverless
+
+- `monitor.py` é um processo contínuo (loop infinito) e **não roda como função serverless** — deve ser executado localmente ou em um worker separado (ex.: VM, container, cron job).
+- O dashboard Streamlit também não é compatível com o modelo serverless da Vercel; deve ser executado localmente ou hospedado separadamente (ex.: Streamlit Community Cloud).
+- Apenas a API FastAPI é hospedada na Vercel.
+
+## Exemplos de requisições
+
+```bash
+curl https://sua-api.vercel.app/health
+curl https://sua-api.vercel.app/delay
+curl https://sua-api.vercel.app/error
+```
+
+## Objetivos de aprendizado
+
+Projeto de portfólio para praticar desenvolvimento de APIs com FastAPI, monitoramento/observabilidade básica, testes automatizados e deploy serverless.
+
+## Autor
+
+**Filipe Oliveira Cardoso**
+GitHub: https://github.com/Filipcardos/api-monitoring-system
