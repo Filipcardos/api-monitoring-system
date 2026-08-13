@@ -11,7 +11,8 @@
     { "src": "/redoc", "dest": "api/index.py" },
     { "src": "/openapi.json", "dest": "api/index.py" },
     { "src": "/api/(.*)", "dest": "api/index.py" },
-    { "src": "/(.*)", "dest": "frontend/dist/$1" }
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "frontend/dist/index.html" }
   ],
   "crons": [
     { "path": "/api/cron/monitor", "schedule": "0 3 * * *" }
