@@ -4,7 +4,9 @@ from fastapi import FastAPI, Header, HTTPException
 from fastapi.responses import JSONResponse
 
 from config import CRON_SECRET
-from monitor import run_monitoring_cycle
+from datetime import datetime, timezone
+
+from monitor import probe_services, run_monitoring_cycle
 from repository import monitoring_repository as repo
 
 app = FastAPI(
@@ -54,6 +56,15 @@ def _uptime_percent(history: list) -> float | None:
     if total == 0:
         return None
     return round((online / total) * 100, 2)
+
+
+@app.get("/api/monitoring/live", tags=["Monitoring"])
+def live_status():
+    results = probe_services()
+    return JSONResponse(
+        {"results": results, "checked_at": datetime.now(timezone.utc).isoformat()},
+        headers={"Cache-Control": "public, max-age=0, s-maxage=15"},
+    )
 
 
 @app.get("/api/monitoring/summary", tags=["Monitoring"], summary="Resumo geral do monitoramento")

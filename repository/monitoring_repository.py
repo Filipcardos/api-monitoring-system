@@ -14,7 +14,7 @@ da implementação concreta do armazenamento.
 """
 import json
 import os
-import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
@@ -28,6 +28,9 @@ UPSTASH_TOKEN = os.getenv("UPSTASH_REDIS_REST_TOKEN")
 
 _LOCAL_FILE = Path(__file__).resolve().parent.parent / "data" / "history.json"
 
+if os.getenv("VERCEL"):
+    _LOCAL_FILE = Path("/tmp/api-monitor/history.json")
+
 _USE_UPSTASH = bool(UPSTASH_URL and UPSTASH_TOKEN)
 
 
@@ -35,8 +38,7 @@ _USE_UPSTASH = bool(UPSTASH_URL and UPSTASH_TOKEN)
 # Backend: Upstash Redis REST
 # ----------------------------------------------------------------------
 def _upstash_command(*args: Any) -> Any:
-    url = f"{UPSTASH_URL}/{'/'.join(str(a) for a in args)}"
-    resp = requests.get(url, headers={"Authorization": f"Bearer {UPSTASH_TOKEN}"}, timeout=5)
+    resp = requests.post(UPSTASH_URL, json=list(args), headers={"Authorization": f"Bearer {UPSTASH_TOKEN}"}, timeout=5)
     resp.raise_for_status()
     return resp.json().get("result")
 
@@ -125,7 +127,7 @@ def backend_name() -> str:
 
 def save_cycle(results: list) -> dict:
     """Persiste o resultado de um ciclo de monitoramento e retorna a entrada salva."""
-    entry = {"checked_at": time.strftime("%Y-%m-%dT%H:%M:%S"), "results": results}
+    entry = {"checked_at": datetime.now(timezone.utc).isoformat(), "results": results}
 
     alerts = [
         {

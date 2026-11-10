@@ -10,18 +10,18 @@
 
 Sistema de monitoramento de APIs com dashboard web profissional. A API FastAPI verifica endpoints, mede latência e classifica status (ONLINE / SLOW / ERROR / TIMEOUT); um dashboard em React + TypeScript exibe tudo em tempo real. O monitoramento roda automaticamente em produção via Vercel Cron — nada precisa ser executado manualmente.
 
-[Abrir o painel de monitoramento](https://api-monitoring-system-gray.vercel.app)
+[Abrir o painel de monitoramento](https://api-monitoring-system-steel.vercel.app)
 
 ## Dashboard
 
-Acessando a URL raiz do deploy, o dashboard React abre diretamente — não é necessário rodar Streamlit, Python ou qualquer comando manual. Ele consulta a API a cada 30s (auto-refresh) e também possui um botão "Atualizar agora".
+A página consulta os endpoints em paralelo a cada 30 segundos e permite atualizar manualmente. As rotas de demonstração incluem uma resposta lenta e um erro 500 intencional. A aba Histórico mostra as coletas do cron. Configure o Upstash para conservar essas coletas entre instâncias da Vercel.
 
 ## Funcionalidades
 
 - Monitoramento automático das APIs via Vercel Cron (sem processo contínuo em produção)
 - Classificação ONLINE / SLOW / ERROR / TIMEOUT com thresholds configuráveis
 - Persistência de histórico e alertas (Upstash Redis em produção)
-- Dashboard React: métricas gerais, tabela de status, detalhes por API, 3 gráficos (latência, distribuição de status, disponibilidade) e painel de alertas
+- Dashboard React: métricas gerais, tabela de status, detalhes por API, latência e histórico das verificações
 - Estados de loading / erro / vazio tratados no frontend
 - Documentação automática da API (Swagger/ReDoc)
 - Testes automatizados (Pytest) para API, monitor e persistência

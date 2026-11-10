@@ -1,7 +1,8 @@
 """Configuração centralizada via variáveis de ambiente."""
 import os
 
-MONITOR_URL = os.getenv("MONITOR_URL", "http://127.0.0.1:8000")
+production_domain = os.getenv("VERCEL_PROJECT_PRODUCTION_URL")
+MONITOR_URL = (os.getenv("MONITOR_URL") or (f"https://{production_domain}" if production_domain else "http://127.0.0.1:8000")).rstrip("/")
 CHECK_INTERVAL = float(os.getenv("CHECK_INTERVAL", "30"))
 TIMEOUT = float(os.getenv("TIMEOUT", "5"))
 SLOW_THRESHOLD = float(os.getenv("SLOW_THRESHOLD", "1000"))    # ms

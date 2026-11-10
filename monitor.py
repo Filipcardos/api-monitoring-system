@@ -7,6 +7,8 @@ endpoint de cron (`/api/cron/monitor`) quanto pela execução contínua local
 (`python monitor.py`).
 """
 import logging
+import os
+from concurrent.futures import ThreadPoolExecutor
 import time
 
 import requests
@@ -24,7 +26,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
-        logging.FileHandler(LOG_FILE, encoding="utf-8"),
+        *([logging.FileHandler(LOG_FILE, encoding="utf-8")] if not os.getenv("VERCEL") else []),
         logging.StreamHandler(),
     ],
 )
@@ -36,7 +38,7 @@ _historico_latencia: dict[str, list] = {}
 def classificar(status_code, tempo, slow_threshold):
     if status_code is None:
         return "TIMEOUT"
-    if status_code >= 500:
+    if status_code >= 400:
         return "ERROR"
     if tempo > slow_threshold:
         return "SLOW"
@@ -57,9 +59,9 @@ def _comportamento_anormal(nome, tempo):
 def verificar_api(api: dict) -> dict:
     nome, url = api["name"], api["url"]
     try:
-        inicio = time.time()
+        inicio = time.perf_counter()
         response = requests.get(url, timeout=TIMEOUT)
-        tempo = round((time.time() - inicio) * 1000, 2)
+        tempo = round((time.perf_counter() - inicio) * 1000, 2)
         status = classificar(response.status_code, tempo, api["slow_threshold"])
         status_code = response.status_code
         erro = None
@@ -92,10 +94,15 @@ def verificar_api(api: dict) -> dict:
     return resultado
 
 
+def probe_services() -> list:
+    with ThreadPoolExecutor(max_workers=len(MONITORED_APIS)) as executor:
+        return list(executor.map(verificar_api, MONITORED_APIS))
+
+
 def run_monitoring_cycle() -> dict:
     """Executa uma rodada de verificação de todas as APIs monitoradas e persiste o resultado."""
     logger.info("Iniciando ciclo de monitoramento...")
-    resultados = [verificar_api(api) for api in MONITORED_APIS]
+    resultados = probe_services()
     entry = repo.save_cycle(resultados)
     logger.info("Ciclo concluído: %d API(s) verificadas.", len(resultados))
     return entry
