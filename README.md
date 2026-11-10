@@ -10,11 +10,7 @@
 
 Sistema de monitoramento de APIs com dashboard web profissional. A API FastAPI verifica endpoints, mede latência e classifica status (ONLINE / SLOW / ERROR / TIMEOUT); um dashboard em React + TypeScript exibe tudo em tempo real. O monitoramento roda automaticamente em produção via Vercel Cron — nada precisa ser executado manualmente.
 
-Deploy: https://api-monitoring-system-gray.vercel.app
-
-## Preview
-
-Dashboard escuro estilo observabilidade (cards de métricas, tabela de status, gráficos de latência/disponibilidade e painel de alertas). Adicione um screenshot em `docs/dashboard.png` e referencie aqui quando disponível.
+[Abrir o painel de monitoramento](https://api-monitoring-system-gray.vercel.app)
 
 ## Dashboard
 
