@@ -19,6 +19,9 @@ from pathlib import Path
 from typing import Any, Optional
 
 import requests
+import threading
+
+_LOCAL_LOCK = threading.Lock()
 
 HISTORY_LIMIT = 200
 ALERTS_LIMIT = 100
@@ -40,7 +43,10 @@ _USE_UPSTASH = bool(UPSTASH_URL and UPSTASH_TOKEN)
 def _upstash_command(*args: Any) -> Any:
     resp = requests.post(UPSTASH_URL, json=list(args), headers={"Authorization": f"Bearer {UPSTASH_TOKEN}"}, timeout=5)
     resp.raise_for_status()
-    return resp.json().get("result")
+    payload = resp.json()
+    if payload.get("error"):
+        raise RuntimeError(payload["error"])
+    return payload.get("result")
 
 
 def _upstash_save_cycle(entry: dict) -> None:
@@ -125,28 +131,37 @@ def backend_name() -> str:
     return "upstash-redis" if _USE_UPSTASH else "local-json (dev only)"
 
 
-def save_cycle(results: list) -> dict:
-    """Persiste o resultado de um ciclo de monitoramento e retorna a entrada salva."""
-    entry = {"checked_at": datetime.now(timezone.utc).isoformat(), "results": results}
-
-    alerts = [
-        {
-            "type": r["status"],
-            "message": f"{r['name']} está com status {r['status']}",
-            "api": r["name"],
-            "timestamp": entry["checked_at"],
-        }
-        for r in results
-        if r["status"] != "ONLINE"
-    ]
-
+def save_cycle(results: list, min_interval: int = 0) -> dict:
+    """Save at most one sample per interval, including concurrent Redis callers."""
+    now = datetime.now(timezone.utc)
+    entry = {"checked_at": now.isoformat(), "results": results}
     if _USE_UPSTASH:
-        _upstash_save_cycle(entry)
-        _upstash_save_alerts(alerts)
-    else:
-        _local_save_cycle(entry)
-        _local_save_alerts(alerts)
-
+        script = """
+        local previous = redis.call('GET', KEYS[1])
+        local last_time = tonumber(redis.call('GET', KEYS[3])) or 0
+        if previous and tonumber(ARGV[2]) - last_time < tonumber(ARGV[3]) then
+            return previous
+        end
+        redis.call('SET', KEYS[1], ARGV[1])
+        redis.call('SET', KEYS[3], ARGV[2])
+        redis.call('LPUSH', KEYS[2], ARGV[1])
+        redis.call('LTRIM', KEYS[2], 0, tonumber(ARGV[4]) - 1)
+        return ARGV[1]
+        """
+        raw = _upstash_command(
+            "EVAL", script, 3, "monitoring:latest", "monitoring:history",
+            "monitoring:last_saved_epoch", json.dumps(entry), now.timestamp(),
+            min_interval, HISTORY_LIMIT,
+        )
+        return json.loads(raw)
+    with _LOCAL_LOCK:
+        data = _local_load()
+        if data["history"] and now.timestamp() - data.get("last_saved_epoch", 0) < min_interval:
+            return data["history"][0]
+        data["history"].insert(0, entry)
+        data["history"] = data["history"][:HISTORY_LIMIT]
+        data["last_saved_epoch"] = now.timestamp()
+        _local_save(data)
     return entry
 
 
@@ -158,5 +173,35 @@ def get_history(limit: int = 50) -> list:
     return _upstash_get_history(limit) if _USE_UPSTASH else _local_get_history(limit)
 
 
+def get_incidents() -> list:
+    """Reconstruct observed incidents from the retained history window."""
+    incidents = []
+    active = {}
+    for entry in reversed(get_history(HISTORY_LIMIT)):
+        for result in entry["results"]:
+            key = result["url"]
+            incident = active.get(key)
+            if result["status"] != "ONLINE" and incident is None:
+                incident = {
+                    "api": result["name"], "url": key, "type": result["status"],
+                    "started_at": entry["checked_at"], "resolved_at": None,
+                }
+                incidents.append(incident)
+                active[key] = incident
+            elif result["status"] == "ONLINE" and incident is not None:
+                incident["resolved_at"] = entry["checked_at"]
+                del active[key]
+    now = datetime.now(timezone.utc)
+    for incident in incidents:
+        start = datetime.fromisoformat(incident["started_at"]).replace(tzinfo=timezone.utc)
+        end = datetime.fromisoformat(incident["resolved_at"]).replace(tzinfo=timezone.utc) if incident["resolved_at"] else now
+        incident["duration_seconds"] = max(0, int((end - start).total_seconds()))
+    return list(reversed(incidents))
+
+
 def get_alerts(limit: int = 20) -> list:
-    return _upstash_get_alerts(limit) if _USE_UPSTASH else _local_get_alerts(limit)
+    return [{
+        "api": item["api"], "type": item["type"],
+        "timestamp": item["started_at"],
+        "message": "Incidente observado",
+    } for item in get_incidents()][:max(1, min(limit, ALERTS_LIMIT))]

@@ -31,3 +31,22 @@ def test_history_respects_limit(monkeypatch, tmp_path):
                            "anomaly_detected": False}])
 
     assert len(repo.get_history(limit=2)) == 2
+
+
+def test_throttle_and_incident_recovery(monkeypatch, tmp_path):
+    monkeypatch.setattr(repo, "_LOCAL_FILE", tmp_path / "history.json")
+    monkeypatch.setattr(repo, "_USE_UPSTASH", False)
+    down = [{"name": "A", "url": "http://x", "status": "ERROR"}]
+    up = [{"name": "A", "url": "http://x", "status": "ONLINE"}]
+    first = repo.save_cycle(down, min_interval=300)
+    assert repo.save_cycle(down, min_interval=300) == first
+    assert len(repo.get_history()) == 1
+    repo.save_cycle(down)
+    assert len(repo.get_incidents()) == 1
+    assert repo.get_incidents()[0]["resolved_at"] is None
+    repo.save_cycle(up)
+    incident = repo.get_incidents()[0]
+    assert incident["resolved_at"] is not None
+    assert incident["duration_seconds"] >= 0
+    repo.save_cycle(down)
+    assert len(repo.get_incidents()) == 2

@@ -1,6 +1,7 @@
+import requests
 import time
 
-from fastapi import FastAPI, Header, HTTPException
+from fastapi import FastAPI, Header, HTTPException, Query
 from fastapi.responses import JSONResponse
 
 from config import CRON_SECRET
@@ -61,8 +62,13 @@ def _uptime_percent(history: list) -> float | None:
 @app.get("/api/monitoring/live", tags=["Monitoring"])
 def live_status():
     results = probe_services()
+    try:
+        repo.save_cycle(results, min_interval=300)
+        storage_error = None
+    except (OSError, RuntimeError, ValueError, requests.RequestException):
+        storage_error = "Não foi possível salvar esta leitura."
     return JSONResponse(
-        {"results": results, "checked_at": datetime.now(timezone.utc).isoformat()},
+        {"storage": repo.backend_name(), "storage_error": storage_error, "results": results, "checked_at": datetime.now(timezone.utc).isoformat()},
         headers={"Cache-Control": "public, max-age=0, s-maxage=15"},
     )
 
@@ -97,18 +103,23 @@ def monitoring_status():
 
 
 @app.get("/api/monitoring/history", tags=["Monitoring"], summary="Histórico de ciclos de monitoramento")
-def monitoring_history(limit: int = 50):
+def monitoring_history(limit: int = Query(default=50, ge=1, le=200)):
     return {"history": repo.get_history(limit=limit)}
 
 
 @app.get("/api/monitoring/alerts", tags=["Monitoring"], summary="Alertas recentes")
-def monitoring_alerts(limit: int = 20):
+def monitoring_alerts(limit: int = Query(default=20, ge=1, le=100)):
     return {"alerts": repo.get_alerts(limit=limit)}
 
 
 # ------------------------------------------------------------------
 # Cron (execução automática via Vercel Cron)
 # ------------------------------------------------------------------
+@app.get("/api/monitoring/incidents", tags=["Monitoring"])
+def monitoring_incidents():
+    return {"incidents": repo.get_incidents()}
+
+
 @app.get("/api/cron/monitor", tags=["Cron"], summary="Executa uma rodada de monitoramento (uso do Vercel Cron)")
 def cron_monitor(authorization: str | None = Header(default=None)):
     if CRON_SECRET:

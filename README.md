@@ -187,3 +187,9 @@ npm run lint --prefix frontend
 
 **Filipe Oliveira Cardoso**
 GitHub: https://github.com/Filipcardos
+
+## Histórico e incidentes
+
+As leituras ao vivo são arquivadas no máximo uma vez a cada cinco minutos enquanto o painel estiver aberto. O cron mantém uma coleta diária quando o painel está fechado. A janela retém até 200 coletas e permite filtrar por serviço. Incidentes são reconstruídos nessa janela, incluindo lentidão, início observado e recuperação observada. A duração depende da frequência das coletas.
+
+Na Vercel, configure UPSTASH_REDIS_REST_URL e UPSTASH_REDIS_REST_TOKEN para histórico durável. Sem essas variáveis, o painel informa que o histórico é temporário por instância.
