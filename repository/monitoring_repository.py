@@ -26,8 +26,8 @@ _LOCAL_LOCK = threading.Lock()
 HISTORY_LIMIT = 200
 ALERTS_LIMIT = 100
 
-UPSTASH_URL = os.getenv("UPSTASH_REDIS_REST_URL")
-UPSTASH_TOKEN = os.getenv("UPSTASH_REDIS_REST_TOKEN")
+UPSTASH_URL = os.getenv("UPSTASH_REDIS_REST_URL") or os.getenv("KV_REST_API_URL")
+UPSTASH_TOKEN = os.getenv("UPSTASH_REDIS_REST_TOKEN") or os.getenv("KV_REST_API_TOKEN")
 
 _LOCAL_FILE = Path(__file__).resolve().parent.parent / "data" / "history.json"
 
