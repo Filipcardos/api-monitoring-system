@@ -14,7 +14,7 @@ Sistema de monitoramento de APIs com dashboard web profissional. A API FastAPI v
 
 ## Dashboard
 
-A página consulta os endpoints em paralelo a cada 30 segundos e permite atualizar manualmente. As rotas de demonstração incluem uma resposta lenta e um erro 500 intencional. A aba Histórico mostra as coletas do cron. Configure o Upstash para conservar essas coletas entre instâncias da Vercel.
+A página consulta os endpoints em paralelo a cada 30 segundos e permite atualizar manualmente. As rotas de demonstração incluem uma resposta lenta e um erro 500 intencional. A aba Histórico mostra as leituras arquivadas do painel e as coletas do cron. Configure o Upstash para conservar essas coletas entre instâncias da Vercel.
 
 ## Funcionalidades
 
@@ -124,6 +124,8 @@ Copie `.env.example` para `.env` e ajuste:
 | GET    | `/health`                       | Healthcheck                                       |
 | GET    | `/delay`                        | Simula resposta lenta (2s)                        |
 | GET    | `/error`                        | Simula falha (HTTP 500)                           |
+| GET    | `/api/monitoring/live`           | Verifica os serviços e arquiva no máximo uma leitura a cada cinco minutos |
+| GET    | `/api/monitoring/incidents`      | Incidentes observados, recuperação e duração |
 | GET    | `/api/monitoring/summary`        | Resumo geral (totais, latência média, uptime)     |
 | GET    | `/api/monitoring/status`         | Status atual de cada API monitorada               |
 | GET    | `/api/monitoring/history`        | Histórico de ciclos (`?limit=`)                    |
@@ -144,9 +146,9 @@ Documentação interativa: `/docs` (Swagger) e `/redoc` (ReDoc).
 
 ## Persistência
 
-Em produção, o histórico é salvo no Upstash Redis via REST API (mesmo serviço por trás da Vercel KV) — compatível com funções serverless, sem depender de filesystem. Configure `UPSTASH_REDIS_REST_URL` e `UPSTASH_REDIS_REST_TOKEN` nas variáveis de ambiente da Vercel.
+Em produção, o histórico é salvo no Upstash Redis via REST API (mesmo serviço por trás da Vercel KV) — compatível com funções serverless, sem depender de filesystem. Configure `UPSTASH_REDIS_REST_URL` e `UPSTASH_REDIS_REST_TOKEN` nas variáveis de ambiente da Vercel. A integração do Upstash pelo Marketplace também é reconhecida por meio de `KV_REST_API_URL` e `KV_REST_API_TOKEN`. Use o token com permissão de escrita. Após conectar o banco, publique um novo deploy para carregar as variáveis.
 
-Sem essas variáveis, o sistema usa um arquivo JSON local (`data/history.json`) — **apenas para desenvolvimento**, já que o filesystem é efêmero em serverless.
+Sem um desses pares de variáveis, o sistema usa `data/history.json` localmente ou `/tmp/api-monitor/history.json` na Vercel. O armazenamento em `/tmp` é temporário e restrito à instância. O painel informa quando o Redis está ausente ou uma leitura não pôde ser salva.
 
 ## Deploy
 
@@ -181,7 +183,7 @@ npm run lint --prefix frontend
 - `monitor.py` no modo `while True` é para uso local apenas — não roda como função serverless. Em produção, o ciclo é disparado pelo Vercel Cron.
 - Cron no plano Hobby é limitado a 1x/dia (ver seção acima).
 - O dashboard Streamlit (`dashboard.py`) é um utilitário local legado, lendo `logs.txt`; não é hospedado na Vercel.
-- Sem `UPSTASH_REDIS_REST_URL`/`TOKEN`, a persistência em produção não funciona corretamente (filesystem serverless é efêmero).
+- O histórico durável depende do Redis, configurado com um dos pares de variáveis descritos em Persistência.
 
 ## Autor
 
@@ -192,4 +194,4 @@ GitHub: https://github.com/Filipcardos
 
 As leituras ao vivo são arquivadas no máximo uma vez a cada cinco minutos enquanto o painel estiver aberto. O cron mantém uma coleta diária quando o painel está fechado. A janela retém até 200 coletas e permite filtrar por serviço. Incidentes são reconstruídos nessa janela, incluindo lentidão, início observado e recuperação observada. A duração depende da frequência das coletas.
 
-Na Vercel, configure UPSTASH_REDIS_REST_URL e UPSTASH_REDIS_REST_TOKEN para histórico durável. Sem essas variáveis, o painel informa que o histórico é temporário por instância.
+Para histórico durável na Vercel, configure o par `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` ou o par `KV_REST_API_URL` / `KV_REST_API_TOKEN` provisionado pelo Marketplace.
